@@ -21,10 +21,6 @@ Fast-HTML is a Python-based project that converts PSD files into HTML files. It 
 ```bash
 git clone https://github.com/yourusername/fast-html.git
 ```
-2. Install the requirements:
-```bash
-pip install -r requirements.txt
-```
 
 ## Usage
 
