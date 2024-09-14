@@ -24,12 +24,18 @@ git clone https://github.com/yourusername/fast-html.git
 
 ## Usage
 
-1. Place your PSD files in the `./raw` directory.
-2. Run the `main.py` script and follow the prompts:
+1. Place your PSD files in the `./raw` directory. (source: http://www.5imoban.net/PSDmoban/)
+3. Run the `main.py` script and follow the prompts:
 ```bash
 python main.py
 ```
 3. The generated HTML files will be saved in the `./results` directory.
+
+## inspirations
+
+1. 让整个企业使用同一个ai
+2. 更加全面的配备ai辅助的前端开发整合包
+3. 直接显示动态效果的所有选择然后让设计者选择
 
 ## Contributing
 
