@@ -1,5 +1,6 @@
 from PIL import Image
 
+
 def check_width(layer_info, user_info):
     if layer_info['left'] + layer_info['width'] > user_info['width']:
         return True
@@ -10,21 +11,12 @@ def check_height(layer_info, user_info):
         return True
 
 
-def get_layer(layer, layers_info, user_info):
+def get_layer(file_name, layer, layers_info, user_info):
     if layer.is_group():
         for sub_layer in layer._layers:
-            get_layer(sub_layer, layers_info, user_info)
+            get_layer(file_name, sub_layer, layers_info, user_info)
     else:
-        layer_info = {
-            'name': layer.name,
-            'type': 'text' if layer.kind == 'type' else 'image',
-            'left': layer.left,
-            'top': layer.top,
-            'width': layer.width,
-            'height': layer.height,
-            'opacity': layer.opacity,
-            'visible': layer.visible
-        }
+        layer_info = {'name': layer.name, 'type': 'text' if layer.kind == 'type' else 'image', 'left': layer.left, 'top': layer.top, 'width': layer.width, 'height': layer.height, 'opacity': layer.opacity, 'visible': layer.visible}
         if layer_info['left'] > user_info['width'] or layer_info['top'] > user_info['height'] or layer_info['left'] + layer_info['width'] < 0 or layer_info['top'] + layer_info['height'] < 0:
             return
         if layer.kind == 'type':
@@ -35,8 +27,10 @@ def get_layer(layer, layers_info, user_info):
             layer_info['font_size'] = style_sheet.get('FontSize', 12)
             color_values = style_sheet.get('StyleSheetData', {}).get('FillColor', {}).get('Values', [0, 0, 0, 1])
             layer_info['color'] = color_values
+            '''
             if layer_info['left'] < 0 or (layer, user_info) or check_height(layer, user_info):
                 print(f'Warning: The text "{layer.text}" may exceed the page !')
+            '''
         else:
             layer_image = layer.composite()
             if layer_image:
@@ -56,17 +50,17 @@ def get_layer(layer, layers_info, user_info):
                     pil_image = pil_image.crop((0, 0, layer_info['width'], user_info['height'] - layer_info['top']))
                     layer_info['width'] -= layer_info['top'] + layer_info['height'] - user_info['height']
                 try:
-                    pil_image.save(f"./results/pictures/{layer.name}_{layer_info['left']}_{layer_info['top']}_{layer_info['width']}_{layer_info['height']}.png")
-                    layer_info['image_path'] = f"./pictures/{layer.name}_{layer_info['left']}_{layer_info['top']}_{layer_info['width']}_{layer_info['height']}.png"
+                    pil_image.save(f"./results/{file_name}/assets/images/{layer.name}_{layer_info['left']}_{layer_info['top']}_{layer_info['width']}_{layer_info['height']}.png")
+                    layer_info['image_path'] = f"./assets/images/{layer.name}_{layer_info['left']}_{layer_info['top']}_{layer_info['width']}_{layer_info['height']}.png"
                 except:
                     return
         layers_info.append(layer_info)
 
 
-def get_layers_info(psd_file, user_info):
+def get_layers_info(file_name, psd_file, user_info):
     layers_info = []
     for index, root_layer in enumerate(psd_file._layers):
-        get_layer(root_layer, layers_info, user_info)
+        get_layer(file_name, root_layer, layers_info, user_info)
     return layers_info
 
 
