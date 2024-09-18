@@ -62,9 +62,3 @@ def get_layers_info(file_name, psd_file, user_info):
     for index, root_layer in enumerate(psd_file._layers):
         get_layer(file_name, root_layer, layers_info, user_info)
     return layers_info
-
-
-def get_user_info():
-    user_info = {}
-    user_info['title'] = input("Title of your page: ")
-    return user_info

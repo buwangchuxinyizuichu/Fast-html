@@ -1,4 +1,12 @@
 import os
+import glob
+
+
+def get_raw_files():
+    cwd = os.getcwd()
+    raw_files = glob.glob(f'{cwd}/raw/*.psd')
+    raw_files = [os.path.basename(file) for file in raw_files]
+    return raw_files
 
 
 def create_directories(file_name):
