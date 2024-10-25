@@ -1,12 +1,18 @@
-from nicegui import ui
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
 
 
-def on_button_click():
-    file_name = ui.text.value
-    # 在这里添加你的代码
+@app.route('/selection', methods=['POST'])
+def handle_selection():
+    data = request.get_json()
+    selected_id = data.get('id')
+    if selected_id:
+        layer_index = int(selected_id.split('-')[1])
+        selected_layer_info = layers_info[layer_index]
+        return jsonify(selected_layer_info)
+    return jsonify({'error': 'Invalid selection'}), 400
 
 
-ui.text('Please choose a file: ', on_enter=on_button_click)
-ui.button('Submit', on_click=on_button_click)
-
-ui.run()
+if __name__ == '__main__':
+    app.run(debug=True)

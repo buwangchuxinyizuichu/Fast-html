@@ -24,9 +24,8 @@ def get_layer(file_name, layer, layers_info, user_info):
             run_array = layer.engine_dict.get('StyleRun', {}).get('RunArray', [{}])
             style_sheet = run_array[0].get('StyleSheet', {})
             layer_info['font'] = style_sheet.get('FontPostScriptName', 'default-font')
-            layer_info['font_size'] = style_sheet.get('FontSize', 12)
-            color_values = style_sheet.get('StyleSheetData', {}).get('FillColor', {}).get('Values', [0, 0, 0, 1])
-            layer_info['color'] = color_values
+            layer_info['font_size'] = layer.engine_dict['StyleRun']['RunArray'][0]['StyleSheet']['StyleSheetData'].get('FontSize', 12)
+            layer_info['color'] = layer.engine_dict['StyleRun']['RunArray'][0]['StyleSheet']['StyleSheetData'].get('FillColor', {'Values': [0, 0, 0, 1]}).get('Values', [0, 0, 0, 1])
             '''
             if layer_info['left'] < 0 or (layer, user_info) or check_height(layer, user_info):
                 print(f'Warning: The text "{layer.text}" may exceed the page !')

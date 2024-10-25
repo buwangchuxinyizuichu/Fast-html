@@ -10,3 +10,4 @@ def init_html(file_name, title):
     layers_info = get_info.get_layers_info(file_name, psd_file, user_info)
     to_html.generate_html(file_name, layers_info, user_info)
     print('Done!')
+
