@@ -1,14 +1,14 @@
 from tqdm import tqdm
 
 
-def generate_style(layer_info, user_info, num):
+def generate_style(layer_info, user_info):
     style_content = f'''
-        .n{num}{{
+        .{layer_info['name']}{{
             position: absolute;
-            left: {layer_info['left']/user_info['width']*100}%;
-            top: {layer_info['top']}px;
-            width: {layer_info['width']/user_info['width']*100}%;
-            height: auto;
+            left: {layer_info['left']/16}rem;
+            top: {layer_info['top']/16}rem;
+            width: {layer_info['width']/16}rem;
+            height: {layer_info['height']/16}rem;
             opacity: {layer_info['opacity']/255};
         }}\n
     '''
@@ -37,25 +37,23 @@ def generate_html(file_name, layers_info, user_info):
     body_content = f'''
     <body>
     '''
-    num = 1  # 图层计数器
     for layer_info in tqdm(layers_info):
         if not layer_info['visible']:
             continue
-        style_content += generate_style(layer_info, user_info, num)
+        style_content += generate_style(layer_info, user_info)
         if layer_info['type'] == 'text':
             color = f"rgba({int(layer_info['color'][1] * 255)}, {int(layer_info['color'][2] * 255)}, {int(layer_info['color'][3] * 255)}, {layer_info['color'][0]})"
             body_content += f'''
-                <div class="n{num}" font-family: {layer_info['font']}; font-size: auto; color: {color};>
+                <div class="{layer_info['name']}" font-family: {layer_info['font']}; font-size: auto; color: {color};>
                     <p> {layer_info['text']}    </p>
                 </div>
         '''
         elif layer_info['type'] == 'image':
             body_content += f'''
-            <div class="n{num}">
+            <div class="{layer_info['name']}">
                 <img src="{layer_info['image_path']}">
             </div>
         '''
-        num += 1
 
     html_content += style_content + '\n</style>\n</head>\n' + body_content
     html_content += '''

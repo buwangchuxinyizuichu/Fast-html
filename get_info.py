@@ -16,7 +16,16 @@ def get_layer(file_name, layer, layers_info, user_info):
         for sub_layer in layer._layers:
             get_layer(file_name, sub_layer, layers_info, user_info)
     else:
-        layer_info = {'name': layer.name, 'type': 'text' if layer.kind == 'type' else 'image', 'left': layer.left, 'top': layer.top, 'width': layer.width, 'height': layer.height, 'opacity': layer.opacity, 'visible': layer.visible}
+        layer_info = {
+            'name': f"{layer.name.replace(' ', '-')}_{layer.left}_{layer.top}_{layer.width}_{layer.height}",
+            'type': 'text' if layer.kind == 'type' else 'image',
+            'left': layer.left,
+            'top': layer.top,
+            'width': layer.width,
+            'height': layer.height,
+            'opacity': layer.opacity,
+            'visible': layer.visible
+        }
         if layer_info['left'] > user_info['width'] or layer_info['top'] > user_info['height'] or layer_info['left'] + layer_info['width'] < 0 or layer_info['top'] + layer_info['height'] < 0:
             return
         if layer.kind == 'type':
@@ -49,8 +58,8 @@ def get_layer(file_name, layer, layers_info, user_info):
                     pil_image = pil_image.crop((0, 0, layer_info['width'], user_info['height'] - layer_info['top']))
                     layer_info['width'] -= layer_info['top'] + layer_info['height'] - user_info['height']
                 try:
-                    pil_image.save(f"./results/{file_name}/assets/images/{layer.name}_{layer_info['left']}_{layer_info['top']}_{layer_info['width']}_{layer_info['height']}.png")
-                    layer_info['image_path'] = f"./assets/images/{layer.name}_{layer_info['left']}_{layer_info['top']}_{layer_info['width']}_{layer_info['height']}.png"
+                    pil_image.save(f"./results/{file_name}/assets/images/{layer_info['name']}.png")
+                    layer_info['image_path'] = f"./assets/images/{layer_info['name']}.png"
                 except:
                     return
         layers_info.append(layer_info)
