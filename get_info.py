@@ -58,8 +58,8 @@ def get_layer(file_name, layer, layers_info, user_info):
                     pil_image = pil_image.crop((0, 0, layer_info['width'], user_info['height'] - layer_info['top']))
                     layer_info['width'] -= layer_info['top'] + layer_info['height'] - user_info['height']
                 try:
-                    pil_image.save(f"./results/{file_name}/assets/images/{layer_info['name']}.png")
-                    layer_info['image_path'] = f"./assets/images/{layer_info['name']}.png"
+                    pil_image.save(f"./results/{file_name}/static/img/{layer_info['name']}.png")
+                    layer_info['image_path'] = f"./static/img/{layer_info['name']}.png"
                 except:
                     return
         layers_info.append(layer_info)

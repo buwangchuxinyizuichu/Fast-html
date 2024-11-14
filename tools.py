@@ -10,15 +10,12 @@ def get_raw_files():
 
 
 def create_directories(file_name):
-    base_dir = f'./results/{file_name}/assets'
+    base_dir = f'./results/{file_name}/static'
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
 
-    files = [
-        'images',
-        'fonts',
-    ]
-    for file in files:
+    files_in_static = ['fonts', 'css', 'img', 'js', 'assets']
+    for file in files_in_static:
         dir_path = os.path.join(base_dir, file)
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
