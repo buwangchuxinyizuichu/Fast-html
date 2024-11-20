@@ -10,6 +10,7 @@ def generate_style(layer_info, user_info):
             width: {layer_info['width']/16}rem;
             height: {layer_info['height']/16}rem;
             opacity: {layer_info['opacity']/255};
+            line-height: {layer_info['line_height']/16}rem;
         }}\n
     '''
     return style_content
@@ -44,7 +45,7 @@ def generate_html(file_name, layers_info, user_info):
         if layer_info['type'] == 'text':
             color = f"rgba({int(layer_info['color'][1] * 255)}, {int(layer_info['color'][2] * 255)}, {int(layer_info['color'][3] * 255)}, {layer_info['color'][0]})"
             body_content += f'''
-                <div class="{layer_info['name']}" font-family: {layer_info['font']}; font-size: auto; color: {color};>
+                <div class="{layer_info['name']}" style="font-family: {layer_info['font']}; font-size: {layer_info['font_size']}; color: {color};">
                     <p> {layer_info['text']}    </p>
                 </div>
         '''
