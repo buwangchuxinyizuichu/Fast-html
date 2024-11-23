@@ -7,7 +7,7 @@ def get_layer(file_name, layer, layers_info, user_info):
             get_layer(file_name, sub_layer, layers_info, user_info)
     else:
         layer_info = {
-            'name': f"{layer.name.replace(' ', '-')}_{layer.left}_{layer.top}_{layer.width}_{layer.height}",
+            'name': f"块_{layer.name.replace(' ', '-')}_{layer.left}_{layer.top}_{layer.width}_{layer.height}",
             'type': 'text' if layer.kind == 'type' else 'image',
             'left': layer.left,
             'top': layer.top,

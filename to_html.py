@@ -24,6 +24,7 @@ def generate_html(file_name, layers_info, user_info):
         <meta charset="UTF-8">
         <meta name=”viewport” content="width=device-width, initial-scale=1.0">
         <title>{user_info['title']}</title>
+        <link rel="stylesheet" href="static/css/styles.css" />
         <style>
             body,
             html {{
@@ -32,9 +33,10 @@ def generate_html(file_name, layers_info, user_info):
                 font-family: Arial, sans-serif;
                 scroll-behavior: smooth;
             }}
+        </style>
 
     '''
-    style_content = ''
+    style_content = '<style>\n'
     body_content = f'''
     <body>
     '''
@@ -55,8 +57,10 @@ def generate_html(file_name, layers_info, user_info):
                 <img src="{layer_info['image_path']}">
             </div>
         '''
-
-    html_content += style_content + '\n</style>\n</head>\n' + body_content
+    style_content += '</style>\n'
+    with open(f"./results/{file_name}/static/css/styles.css", 'w', encoding='utf-8') as f:
+        f.write(style_content)
+    html_content += '</head>\n' + body_content
     html_content += '''
         <script>
             var browserWidth = window.innerWidth;
