@@ -3,40 +3,56 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Sign up</title>
+		<style>
+					body {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						height: 100vh;
+						margin: 0;
+					}
+				   .form {
+						width: 100%;
+						max-width: 400px;
+						padding: 20px;
+						border: 1px solid #ccc;
+						border-radius: 5px;
+					}
+				</style>
+		<link rel="stylesheet" href="css/signup.css" />
 	</head>
 	
-	<body>
-		<h1>Sign up</h1>
-		
-		<form action="process-Sign up.php" method="post" novalidate>
+	<body>		
+	<form class="form" action="process-Sign up.php" method="post" novalidate>
+		    <p class="title">Sign upr </p >
+		    <p class="message">Signup now and get full access to our web. </p >
 		    
-		    <div>
-				<label for="name">Name</label>
-				<input type="text" id="name" name="name"/>
-			</div>
-
-			<div>
-				<label for="email">email</label>
-				<input type="email" id="email" name="email"/>
-			</div>
+				<label for="name">
+				        <input class="input" type="name" id="name" name="name" placeholder="" required="">
+				        <span>Name</span>
+				</label> 
+			<label for="email">
+			        <input class="input" type="email" id="email" name="email" placeholder="" required="">
+			        <span>Email</span>
+			</label>
 			
-			<div>
-				<label for="account">Account</label>
-				<input type="text" id="account" name="account"/>
-			</div>
+			<label for="account">
+			        <input class="input" type="account" id="account" name="account" placeholder="" required="">
+			        <span>Account</span>
+			</label>
 			
-			<div>
-				<label for="password">Password</label>
-				<input type="password" id="password" name="password"/>
-			</div>
+			<label for="password">
+			        <input class="input" type="password" id="password" name="password" placeholder="" required="">
+			        <span>Password</span>
+			</label>
 			
-			<div>
-				<label for="password_confirmation">Repeat Password</label>
-				<input type="password" id="password_confirmation" name="password_confirmation"/>
-			</div>
-
+			<label for="password">
+			        <input class="input" type="password" id="password_confirmation" name="password_confirmation" placeholder="" required="">
+			        <span>Password</span>
+			</label>
 			
-			<button>Sign up</button>
+			<button class="submit">Submit</button>
+			<p class="signin">Already have an acount ? Signin </p >
 		</form>
 	</body>
 	
