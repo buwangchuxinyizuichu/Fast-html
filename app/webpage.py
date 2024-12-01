@@ -1,7 +1,7 @@
 from nicegui import ui
 import main
 import tools
-
+import functions
 
 def run_webgui():
 
@@ -13,7 +13,7 @@ def run_webgui():
             title.style('border: 1px solid red;')
         else:
             title.style('border: 1px solid white;')
-            main.init_html(selected_file.value[:-4], title.value)
+            functions.init_html(selected_file.value[:-4], title.value)
 
     with ui.card().style('width: 40%;'):
         selected_file = ui.select(label='Select a file', options=tools.get_raw_files()).style('width: 100%; overflow:hidden;')
