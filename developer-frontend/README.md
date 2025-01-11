@@ -31,7 +31,7 @@ HuggingQwen-Assistant是一个基于Streamlit开发的交互式聊天应用，�
    - 访问 [https://huggingface.co/settings/tokens/new?globalPermissions=inference.serverless.write&tokenType=fineGrained](https://huggingface.co/settings/tokens/new?globalPermissions=inference.serverless.write&tokenType=fineGrained) 创建新的API token。
    - 确保选择了 `inference.serverless.write` 权限。
 
-4. 复制`.env.example`文件并重命名为`.env`，然后在其中填入你的Hugging Face API密钥：
+4. 在.env文件中填入你的Hugging Face API密钥：
 
    ```
    HUGGINGFACE_API_KEY=你的api密钥
