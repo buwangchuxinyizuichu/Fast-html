@@ -36,24 +36,43 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 	<head>
 		<meta charset="utf-8">
 		<title>Login</title>
+		<link rel="stylesheet" href="css/login.css" />
+		<style>
+		    body {
+		        display: flex;
+		        justify-content: center;
+		        align-items: center;
+		        height: 100vh;
+		        margin: 0;
+		    }
+		   .form {
+		        width: 100%;
+		        max-width: 400px;
+		        padding: 20px;
+		        border: 1px solid #ccc;
+		        border-radius: 5px;
+		    }
+		</style>
 	</head>
 	
 	<body>
-		<h1>Login</h1>
 
-        <?php if($is_invalid): ?>
+
+        <form method="post" class="form">
+			<p class="title">Sign up </p >
+			<p class="message">Signup now and get full access to our web. </p >
+            <?php if($is_invalid): ?>
             <em>Invalid Login</em>
         <?php endif; ?>
+  <label for="account">
+            <input class="input" type="text" placeholder="" required="" id="account" name="account"
+			 value="<?= htmlspecialchars($_POST["account"] ?? "")?>">
+            <span>Account</span>
+        </label>
+            <label for="password">
+                <input class="input" type="password" placeholder="" required="" name="password" id="password"> 
+                <span>Password</span>
+            </label>
 
-        <form method="post">
-            <label for="account">account</label>
-            <input type="text" name="account" id="account"
-                   value="<?= htmlspecialchars($_POST["account"] ?? "") ?>">
-
-            <label for="password">password</label>
-            <input type="password" name="password" id="password">
-
-            <button>Log in</button>
-        </form>
-    </body>
-</html>
+            <button class="submit">Submit</button>
+            <p class="signin">Don't have an account yet? Register now 
